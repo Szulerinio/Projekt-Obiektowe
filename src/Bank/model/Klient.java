@@ -1,6 +1,5 @@
 package Bank.model;
 
-import Bank.enums.TypKonta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +20,9 @@ public class Klient extends ObiektBazodanowy{
         this.listaKont = new ArrayList<>();
     }
 
+    public long getPesel() {
+        return pesel;
+    }
 
     public double getZdolnoscKredytowa() {
         return zdolnoscKredytowa;
@@ -59,7 +61,7 @@ public class Klient extends ObiektBazodanowy{
     public String toString() {
         return "Klient{" +
                 super.toString() +
-                "pesel: " + pesel +
+                ", pesel: " + pesel +
                 ", zdolnoscKredytowa: " + zdolnoscKredytowa +
                 ", imie: " + imie  +
                 ", nazwisko: " + nazwisko +
@@ -73,7 +75,7 @@ public class Klient extends ObiektBazodanowy{
 
             for (Konto konto: this.listaKont){
                 toReturn += "identyfikator: " + konto.getIdentyfikator() +
-                        "nazwa" + konto.getNazwa() ;
+                        ", nazwa: {" + konto.getNazwa() + " }" ;
             }
         }
 

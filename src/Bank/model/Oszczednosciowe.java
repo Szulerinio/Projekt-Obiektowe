@@ -1,8 +1,12 @@
 package Bank.model;
 import Bank.interfaces.przelewalne;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Oszczednosciowe extends Konto implements przelewalne {
     private float procent;
+    private List<Przelew> przelewyWychodzace;
 
     public float getProcent() {
         return procent;
@@ -12,20 +16,39 @@ public class Oszczednosciowe extends Konto implements przelewalne {
         this.procent = procent;
     }
 
+    public void dodajPrzelewWychodzacy( Przelew przelew){
+
+        this.przelewyWychodzace.add(przelew);
+
+    }
+
     public Oszczednosciowe(String nazwa, Klient wlasciciel, float procent) {
         super(nazwa, wlasciciel);
+        this.przelewyWychodzace = new ArrayList<>();
         this.procent = procent;
-    }
-    public Przelew przelew(long kontoDolcelowe, double kwota){
-        Przelew toReturn= new Przelew(kwota, this.getIdentyfikator(), kontoDolcelowe);
-        return toReturn;
     }
 
     @Override
     public String toString() {
         return "Oszczednosciowe{ " +
                 super.toString() +
-                "procent:" + this.getProcent() +
+                ", obciążenia : {" + getPrzelewyWychodzaceString() +
+                "}, procent: " + this.getProcent() +
                 "} \n ";
+    }
+
+    private String getPrzelewyWychodzaceString(){
+        String toReturn= "";
+        if (this.przelewyWychodzace.size()>0){
+
+            for (Przelew przelew: this.przelewyWychodzace){
+                toReturn += "identyfikator: " + przelew.getIdentyfikator() +
+                        ", konto docelowe: " + przelew.getOdbiorca().getIdentyfikator() +
+                        ", kwota: " + przelew.getKwota() +
+                        ", data: " + przelew.getData();
+            }
+        }
+
+        return toReturn;
     }
 }

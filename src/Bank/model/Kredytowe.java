@@ -28,12 +28,14 @@ public class Kredytowe extends Konto {
         }
     }
 
+
     @Override
     public String toString() {
         return "Kredytowe{ " +
                 super.toString() +
-                ", rata:" + rata +
+                ", rata: " + rata +
                 ", dlugCalkowity: " + dlugCalkowity +
                 "} \n ";
     }
+
 }

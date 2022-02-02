@@ -1,9 +1,10 @@
 package Bank.interfaces;
 
+import Bank.model.Konto;
 import Bank.model.Przelew;
 
 public interface przelewalne {
-    Przelew przelew(long kontoDolcelowe, double kwota);
+    public void dodajPrzelewWychodzacy( Przelew przelew);
 
-//    boolean zamknijKonto();
+//    private String getPrzelewyWychodzaceString();
 }
